@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import '../styles/globals.css'
 
 export const metadata: Metadata = {
@@ -20,6 +21,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" />
+        <Script id="mermaid-init" strategy="afterInteractive">
+          {`
+            if (typeof mermaid !== 'undefined') {
+              mermaid.contentLoaded();
+            }
+          `}
+        </Script>
+      </head>
       <body>
         <Header />
         {children}
